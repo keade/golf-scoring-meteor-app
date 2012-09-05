@@ -1,0 +1,55 @@
+<head>
+  <title>Golf Score v.0.1</title>
+	<link href="https://s3.amazonaws.com/golf-score/small-icon.png" sizes="57x57" rel="apple-touch-icon">
+    <link href="https://s3.amazonaws.com/golf-score/medium-icon.png" sizes="72x72" rel="apple-touch-icon">
+    <link href="https://s3.amazonaws.com/golf-score/medlarge-icon.png" sizes="114x114" rel="apple-touch-icon">
+    <link href="https://s3.amazonaws.com/golf-score/large-icon.png" sizes="144x144" rel="apple-touch-icon">
+	<link href="https://s3.amazonaws.com/golf-score/small-load.png" media="(device-width: 320px)" rel="apple-touch-startup-image">
+    <link href="https://s3.amazonaws.com/golf-score/large-load.png" media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+</head>
+
+<body>
+  <div id="outer">
+	<h1><span style="background:#4599fe;">Scurr</span><span style="background:#01204e;">Dat</span><span style="background:#f30304;">Gluf</span></h1>
+    {{> leaderboard}}
+  </div>
+</body>
+
+<template name="leaderboard">
+  <div class="leaderboard">
+    {{#each players}}
+      {{> player}}
+    {{/each}}
+  </div>
+
+  {{#if selected_name}}
+  <div class="details"  style="padding-top:40px">
+    <div class="name">Scoring: {{selected_name}}</div>
+    <button type="button" class="inc btn add_one" style="float:left;">1 Stroke</button>
+    <button type="button" class="dec btn sub_one" style="float:right;">-1 Stroke</button>
+  </div>
+  {{/if}}
+
+  {{#unless selected_name}}
+  <div class="none"></div>
+  {{/unless}}
+  {{> new_player }} 
+</template>
+
+<template name="player">
+  <div class="player {{selected}}">
+	<button type="button" class="deleter delete">X</button>
+    <span class="name">{{name}}</span>
+    <span class="score">{{score}}</span>
+  </div>
+</template>
+
+<template name="new_player">
+  <div class="new_player" style="padding-top:40px;">
+    <input id="new_player_name" class="name_input" type="text" />
+    <button type="button" class="add btn">Add Player</button>
+  </div>
+</template>
